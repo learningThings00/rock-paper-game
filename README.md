@@ -11,3 +11,7 @@ A browser based Rock Paper Scissors game built with vanilla JavaScript.
 ## Technologies
 
 - HTML, CSS, JavaScript
+
+## Live Demo
+
+- [Play here](https://learningthings00.github.io/rock-paper-game/)
