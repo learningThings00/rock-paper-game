@@ -2,18 +2,14 @@ let score = JSON.parse(localStorage.getItem("score")) || {
         wins: 0,
         losses: 0,
         ties: 0,
-      }; // we used a default value cause after resets the score object becomes null so we give a default value to it
-      updateScore();
-      /*
-      if (!score) {
-      wins: 0,
-      losses: 0, // sp instead deafault we can use this code
-      ties: 0
       };
-      */
 
+      updateScore();
+      
+      
       let isPlaying = false;
-      let intervalId;
+      let intervalId = false;
+      let isVisible = false;
 
       function autoPlay() {
         
@@ -66,8 +62,6 @@ let score = JSON.parse(localStorage.getItem("score")) || {
       
 
 
-      let isVisible = false;
-
       document.body.addEventListener('keydown', (event) => {
         if (event.key === 'r' && !isVisible) {
           playGame('rock');
@@ -80,7 +74,7 @@ let score = JSON.parse(localStorage.getItem("score")) || {
         } else if (event.key === 'Backspace') {
           resetMessage();
           isVisible = true;
-        } else if (event .key === 'y' && isVisible) {
+        } else if (event.key === 'y' && isVisible) {
           yesAction();
           isVisible = false;
         } else if (event.key === 'n' && isVisible) {
@@ -128,7 +122,7 @@ let score = JSON.parse(localStorage.getItem("score")) || {
           score.ties += 1;
         }
 
-        localStorage.setItem("score", JSON.stringify(score));
+        updateLocalStorage();
 
         updateScore();
 
@@ -142,7 +136,7 @@ let score = JSON.parse(localStorage.getItem("score")) || {
         score.wins = 0;
         score.losses = 0;
         score.ties = 0;
-        localStorage.removeItem("score");
+        updateLocalStorage();
         updateScore();
         document.querySelector(".js-result").innerHTML = "";
         document.querySelector(".js-moves").innerHTML = "";
@@ -181,4 +175,8 @@ let score = JSON.parse(localStorage.getItem("score")) || {
 
       function noAction() {
         document.querySelector('.js-confirmation-message').innerHTML = '';
+      }
+
+       function updateLocalStorage() {
+        localStorage.setItem("score", JSON.stringify(score));
       }
