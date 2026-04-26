@@ -8,7 +8,7 @@ let score = JSON.parse(localStorage.getItem("score")) || {
       
       
       let isPlaying = false;
-      let intervalId = null;
+      let intervalId = false;
       let isVisible = false;
 
       function autoPlay() {
